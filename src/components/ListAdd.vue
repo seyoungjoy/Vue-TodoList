@@ -1,62 +1,38 @@
 <template>
     <div>
         <v-textarea
-            outlined
+            outline
             v-model="memo"
-            label="투두리스트를 입력해주세요."
+            label="투두리스트를 입력해주세요"
             value=""
         ></v-textarea>
-        <v-btn
-            @click="listAdd"
-            v-if="this.mode==='add'"
-        >리스트 추가</v-btn>
-        <v-btn
-            @click="listEdit"
-            v-else
-        >리스트 수정</v-btn>
+        <v-btn @click="listAdd">리스트 추가</v-btn>
+        <div @click="addCarList">{{carList}}</div>
     </div>
 </template>
 <script>
-import {eventBus} from '../main'
-export default {
+export default{
     data(){
         return{
             memo: null,
-            index:null,
-            mode:"add"
+            carList : 'es600'
         }
     },
-    created(){
-        // eventBus.$on("listEdit",(memo, index) => {
-        //     console.log(memo, index);
-        // })
-        eventBus.$on('listEdit', (memo, index) => {
-            this.memo = memo
-            this.index = index
-            this.mode = "edit"
-        })
-    },
-    methods:{
+    methods: {
         listAdd(){
-            console.log("리스트 추가");
+            console.log("리스트 추가")
             if(this.memo === null){
-                alert("할일을 입력해라.")
+                alert("할일을 입력해주세요")
             } else{
-                this.$emit("listAdd", this.memo)
-                this.memo = null
+                this.$emit('listAdd', this.memo)
             }
         },
-        listEdit(){
-            if(this.memo === null){
-                alert("할일을 입력해라.")
-            } else{
-                this.$emit("listEdit", this.memo, this.index)
-                this.memo = null
-                this.mode = "add"
-            }
+        addCarList(){
+            console.log(111);
+            this.$emit('addCarList', this.carList)
         }
-
-    }
-
+    },
 }
+
+
 </script>
