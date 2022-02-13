@@ -9,8 +9,8 @@ Vue.config.productionTip = false
 
 export const eventBus = new Vue({
   // methods:{
-  //   listEdit(memo,index){
-  //     this.$emit('listEdit', memo, index)
+  //   listEdit(memo, index){
+  //     this.$emit('listEdit',memo, index)
   //   }
   // }
 })
